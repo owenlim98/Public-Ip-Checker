@@ -7,15 +7,13 @@ fileLocation = "F:\Minecraft Servers\PublicIp.txt"
 filePath = "F:\Minecraft Servers"
 
 publicIp = get("https://api.ipify.org").text
-currentIp = ""
 
 def checkIfFileExist(fileLocation):
     return os.path.exists(fileLocation)
 
 def checkIfPublicIpStillTheSame(publicIp):
-    print("Current Public Ip is " + currentIp, "\nNew Public Ip is " + publicIp)
     if currentIp != publicIp:
-        print("Oops your public IP seems to have changed")
+        print("Oops your public IP seems to have changed \nCurrent public IP is " + currentIp + "\nNew public IP is " + publicIp)
         webbrowser.open_new_tab("https://www.noip.com/")
         saveNewIP()
         print("Save new public IP to file!")
@@ -29,9 +27,9 @@ def saveNewIP():
     
 
 if checkIfFileExist(fileLocation):
-    fileOpen = open(fileLocation, "w+")
+    fileOpen = open(fileLocation, "r+")
     currentIp = fileOpen.read()
-    print("Checking if Public IP Changed")
+    print("Current IP " + currentIp + "\nChecking if Public IP Changed")
     checkIfPublicIpStillTheSame(publicIp)
 
 else:
