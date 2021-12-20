@@ -15,13 +15,13 @@ def checkIfPublicIpStillTheSame(publicIp):
     if currentIp != publicIp:
         print("Oops your public IP seems to have changed \nCurrent public IP is " + currentIp + "\nNew public IP is " + publicIp)
         webbrowser.open_new_tab("https://www.noip.com/")
-        saveNewIP()
+        saveNewIP(publicIp)
         print("Save new public IP to file!")
     
     else:
         print("Current public IP still the same as before!")
 
-def saveNewIP():
+def saveNewIP(publicIp):
     fileOpen.write(publicIp)
     fileOpen.close()
     
@@ -35,5 +35,7 @@ if checkIfFileExist(fileLocation):
 else:
     print("File does not exist, creating file now!")
     fileCreation = open(fileLocation, "w+")
-    saveNewIP()
+    fileOpen = fileCreation
+    ip = input("Public Ip please\n")
+    saveNewIP(ip)
     print("Saved public IP to file!")
