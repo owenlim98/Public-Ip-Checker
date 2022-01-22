@@ -19,6 +19,7 @@ def checkIfPublicIpStillTheSame(publicIp):
         print("Save new public IP to file!")
     
     else:
+        fileOpen.close()
         print("Current public IP still the same as before!")
 
 def saveNewIP(publicIp):
